@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fanlar — Interaktiv darslik</title>
+<style>
+:root{--primary:#2563eb;--success:#16a34a;--bg:#f8fafc;--card:#fff;--text:#1e293b;--border:#e2e8f0;--muted:#64748b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb,#06b6d4);color:#fff;padding:30px 20px;text-align:center}
+header h1{margin:0 0 10px;font-size:clamp(22px,4vw,36px)}
+header p{margin:0;opacity:.94}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:#fff;padding:12px;box-shadow:0 4px 12px #0000000d;position:sticky;top:0;z-index:100}
+nav button,.action{background:#f1f5f9;border:1px solid var(--border);padding:9px 13px;border-radius:99px;font-weight:650;cursor:pointer;font-size:14px;transition:.2s;color:var(--text)}
+nav button:hover,nav button.active,.action.primary{background:var(--primary);color:white;border-color:var(--primary)}
+main{max-width:1000px;margin:20px auto;padding:0 16px}
+section{display:none;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:clamp(16px,3vw,24px);box-shadow:0 10px 25px #0000000a;margin-bottom:20px;animation:fadeIn .3s ease}
+section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2{color:var(--primary);margin-top:0}
+h3{margin-top:0;color:#0f172a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;margin-top:16px}
+.card-item{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px}
+.pill{display:inline-block;background:#dbeafe;color:#1d4ed8;border-radius:8px;padding:3px 9px;font-size:13px;font-weight:700}
+.sim{border:1px solid #bfdbfe;background:#eff6ff;border-radius:14px;padding:16px;margin-top:18px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+input[type=range]{width:min(100%,260px);accent-color:var(--primary)}
+select{padding:9px;border:1px solid var(--border);border-radius:9px;background:white;max-width:100%}
+.stage{min-height:130px;background:#fff;border:1px dashed #93c5fd;border-radius:12px;padding:15px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.big{font-size:2.2rem}
+.bar{height:14px;background:#dbeafe;border-radius:20px;overflow:hidden;min-width:100px;flex:1}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#06b6d4);width:50%;transition:width .25s}
+.feedback{font-weight:650;min-height:1.6em;margin-top:10px}
+.quiz-question{padding:12px 0;border-bottom:1px solid var(--border)}
+.quiz-question label{display:block;margin:7px 0;cursor:pointer}
+footer{text-align:center;padding:20px;color:var(--muted);font-size:14px}
+.small{font-size:13px;color:var(--muted)}
+@media(max-width:600px){nav{position:static}nav button{font-size:12px;padding:8px 10px}section{border-radius:14px}}
+</style>
+</head>
+<body>
+<header>
+<h1>🌿 6-sinf Tabiiy fanlar</h1>
+<p>Asosiy mavzular, sodda tajribalar va interaktiv simulyatsiyalar</p>
+</header>
+<nav id="navbar" aria-label="Mavzular">
+<button class="active" onclick="showTab(0)">1. Ratsional ovqatlanish</button>
+<button onclick="showTab(1)">2. Ovqat hazm qilish</button>
+<button onclick="showTab(2)">3. Nafas va qon aylanish</button>
+<button onclick="showTab(3)">4. Kasalliklar</button>
+<button onclick="showTab(4)">5. Oziq zanjiri</button>
+<button onclick="showTab(5)">6. Modda xossalari</button>
+<button onclick="showTab(6)">7. Qaynash va bug‘lanish</button>
+<button onclick="showTab(7)">8. Fizik o‘zgarishlar</button>
+<button onclick="showTab(8)">9. Erish va qotish</button>
+<button onclick="showTab(9)">10. BSB testi</button>
+</nav>
+<main>
+<section class="active">
+<h2>🥗 1. Ratsional ovqatlanish</h2>
+<p>Ratsional ovqatlanish — organizm ehtiyojiga mos, xilma-xil, muvozanatli va me’yorida ovqatlanishdir.</p>
+<div class="grid">
+<div class="card-item"><h3>Asosiy oziq moddalar</h3><p><b>Oqsillar</b> o‘sish va to‘qimalarni tiklashga; <b>uglevodlar</b> energiya berishga; <b>yog‘lar</b> energiya zaxirasi va hujayralar tuzilishiga yordam beradi. Vitaminlar, minerallar va suv ham zarur.</p></div>
+<div class="card-item"><h3>Sog‘lom tarelka</h3><p>Sabzavot-mevalar, don mahsulotlari, oqsil manbalari va sut mahsulotlarini xilma-xil tanlash foydali. Shirin ichimliklar va ortiqcha tuzni cheklash kerak.</p></div>
+<div class="card-item"><h3>Ovqatlanish odatlari</h3><p>Qo‘lni yuvish, ovqatni shoshilmay yeyish, toza suv ichish va mahsulotlarni to‘g‘ri saqlash muhim.</p></div>
+</div>
+<div class="sim"><h3>🧩 Tarelka tuzing</h3><p>Muvozanatli ovqatlanishga mos mahsulotlarni tanlang.</p>
+<div class="controls"><label><input type="checkbox" class="food"> Sabzavot va mevalar</label><label><input type="checkbox" class="food"> Don mahsulotlari</label><label><input type="checkbox" class="food"> Oqsil manbai</label><label><input type="checkbox" class="food"> Suv</label></div>
+<button class="action primary" onclick="checkFood()">Tarelka tahlili</button><div id="foodResult" class="feedback" aria-live="polite"></div></div>
+</section>
+<section>
+<h2>🫀 2. Ovqat hazm qilish sistemasi</h2>
+<p>Ovqat hazm qilish — oziqni maydalash, murakkab moddalarni sodda moddalarga parchalash va ularni organizmga so‘rilish jarayonidir.</p>
+<div class="grid">
+<div class="card-item"><h3>Hazm yo‘li</h3><p>Og‘iz bo‘shlig‘i → halqum → qizilo‘ngach → oshqozon → ingichka ichak → yo‘g‘on ichak → to‘g‘ri ichak.</p></div>
+<div class="card-item"><h3>Yordamchi a’zolar</h3><p>Jigar o‘t suyuqligini ishlab chiqaradi, o‘t pufagi uni saqlaydi, oshqozonosti bezi hazm fermentlarini ajratadi.</p></div>
+<div class="card-item"><h3>Hayvonlarda hazm</h3><p>Hazm tizimi hayvonning oziqlanishiga moslashgan. Masalan, kavsh qaytaruvchi hayvonlarda o‘simlik oziqni qayta ishlashga moslashgan murakkab oshqozon bo‘ladi.</p></div>
+</div>
+<div class="sim"><h3>🔄 Ovqat yo‘lini tartiblang</h3><p>Ketma-ketlikni tanlang va tekshiring.</p>
+<div class="controls"><select id="digest"><option value="">A’zoni tanlang…</option><option>Og‘iz bo‘shlig‘i</option><option>Qizilo‘ngach</option><option>Oshqozon</option><option>Ingichka ichak</option><option>Yo‘g‘on ichak</option></select><button class="action" onclick="digestStep()">Keyingi bosqich</button><button class="action" onclick="resetDigest()">Qayta boshlash</button></div><div class="stage" id="digestStage">Ovqat avval qayerga tushadi?</div><div id="digestResult" class="feedback"></div></div>
+</section>
+<section>
+<h2>🫁 3. Nafas va qon aylanish sistemasi</h2>
+<p>Nafas olish kislorodning organizmga kirishi va karbonat angidridning chiqarilishini ta’minlaydi. Qon aylanish tizimi gazlar va oziq moddalarni tashiydi.</p>
+<div class="grid">
+<div class="card-item"><h3>Nafas yo‘llari</h3><p>Burun bo‘shlig‘i, halqum, hiqildoq, traxeya, bronxlar va o‘pka. Alveolalarda kislorod va karbonat angidrid almashinuvi sodir bo‘ladi.</p></div>
+<div class="card-item"><h3>Qon aylanish</h3><p>Yurak qonni tomirlar bo‘ylab haydaydi. Arteriyalar qonni yurakdan olib chiqadi, venalar yurakka qaytaradi, kapillyarlarda moddalar almashinuvi sodir bo‘ladi.</p></div>
+</div>
+<div class="sim"><h3>💨 Nafas olish modeli</h3><p>Diafragma harakatini o‘zgartirib, o‘pka hajmining qanday o‘zgarishini kuzating.</p>
+<div class="controls"><label for="breath">Diafragma harakati:</label><input id="breath" type="range" min="0" max="100" value="50" oninput="breathSim()"><span id="breathVal">50%</span></div>
+<div class="stage"><div><div class="big" id="lung">🫁</div><div id="breathText">O‘pka hajmi o‘rtacha</div><div class="bar"><span id="lungBar" style="width:50%"></span></div></div></div>
+<p class="small">Bu soddalashtirilgan model: nafas olganda diafragma qisqarib pastga tushadi, ko‘krak qafasi hajmi ortadi.</p></div>
+<div class="sim"><h3>❤️ Qonning vazifasi</h3><p>Qon o‘pkadan kislorodni tana hujayralariga olib boradi va karbonat angidridning o‘pkaga qaytishiga yordam beradi.</p><div class="stage"><div class="big">🫁 → 🩸 → 🧍</div></div></div>
+</section>
+<section>
+<h2>🦠 4. Kasalliklar va organizm himoyasi</h2>
+<p>Kasalliklar yuqumli yoki yuqumsiz bo‘lishi mumkin. Oldini olish uchun gigiyena, emlash, sog‘lom turmush tarzi va zarur paytda tibbiy maslahat muhim.</p>
+<div class="grid">
+<div class="card-item"><h3>Yuqumli kasalliklar</h3><p>Viruslar, bakteriyalar va ayrim boshqa mikroorganizmlar sabab bo‘ladi. Ular havo orqali, iflos suv yoki oziq-ovqat, yaqin aloqa va ayrim hollarda qon orqali tarqalishi mumkin.</p></div>
+<div class="card-item"><h3>Yuqumsiz kasalliklar</h3><p>Odatda odamdan odamga yuqmaydi. Ularning sabablari irsiyat, atrof-muhit va turmush tarzi bilan bog‘liq bo‘lishi mumkin.</p></div>
+<div class="card-item"><h3>Himoya mexanizmlari</h3><p>Teri va shilliq qavatlar to‘siq vazifasini bajaradi. Immun tizim hujayralari mikroblarga qarshi kurashadi. Emlash ayrim infeksiyalardan himoyalanishga yordam beradi.</p></div>
+</div>
+<div class="sim"><h3>🧼 Vaziyatni tanlang</h3><p>Qaysi odat infeksiya tarqalish xavfini kamaytiradi?</p>
+<div class="controls"><select id="hygiene"><option value="">Javobni tanlang…</option><option value="bad1">Yuvilmagan qo‘l bilan ovqatlanish</option><option value="good">Qo‘lni sovun bilan yuvish</option><option value="bad2">Boshqalarning idishidan foydalanish</option></select><button class="action primary" onclick="checkHygiene()">Tekshirish</button></div><div id="hygieneResult" class="feedback"></div></div>
+</section>
+<section>
+<h2>🌿 5. Oziq zanjiri va oziq to‘ri</h2>
+<p>Oziq zanjiri organizmlar orasida oziq va energiya uzatilish ketma-ketligini ko‘rsatadi. Bir nechta oziq zanjiri tutashsa, oziq to‘ri hosil bo‘ladi.</p>
+<div class="grid">
+<div class="card-item"><h3>Ishlab chiqaruvchilar</h3><p>Yashil o‘simliklar Quyosh energiyasidan foydalanib fotosintez orqali oziq modda hosil qiladi.</p></div>
+<div class="card-item"><h3>Iste’molchilar</h3><p>O‘simlikxo‘rlar o‘simliklarni, yirtqichlar esa boshqa hayvonlarni yeyishi mumkin. Parchalovchilar o‘lik qoldiqlarni parchalab, moddalarni tabiatga qaytaradi.</p></div>
+</div>
+<div class="sim"><h3>🔗 Oziq zanjirini yarating</h3><p>Organizmlarni to‘g‘ri ketma-ketlikda tanlang.</p>
+<div class="controls"><select id="chain1"><option value="">1-organizm</option><option value="plant">O‘t</option><option value="fox">Tulki</option><option value="rabbit">Quyon</option></select><span>→</span><select id="chain2"><option value="">2-organizm</option><option value="plant">O‘t</option><option value="fox">Tulki</option><option value="rabbit">Quyon</option></select><span>→</span><select id="chain3"><option value="">3-organizm</option><option value="plant">O‘t</option><option value="fox">Tulki</option><option value="rabbit">Quyon</option></select><button class="action primary" onclick="checkChain()">Tekshirish</button></div><div id="chainResult" class="feedback"></div><div class="stage big">☀️ → 🌱 → 🐇 → 🦊</div><p class="small">O‘q oziq va energiyaning uzatilish yo‘nalishini ko‘rsatadi.</p></div>
+</section>
+<section>
+<h2>🧪 6. Moddaning xossalari</h2>
+<p>Moddalar massa, hajm, rang, zichlik, eruvchanlik hamda issiqlik va elektr o‘tkazuvchanlik kabi xossalarga ega.</p>
+<div class="grid">
+<div class="card-item"><h3>Gazlar massaga egami?</h3><p>Ha. Havo gazlar aralashmasi bo‘lib, massa va hajmga ega. Puflangan shar bo‘sh shardan og‘irroq bo‘lishi mumkin.</p></div>
+<div class="card-item"><h3>Agregat holatlar</h3><p>Qattiq modda shaklini saqlaydi; suyuqlik idish shaklini oladi; gaz idishni to‘ldirib tarqaladi. Harorat o‘zgarishi holat almashinishiga sabab bo‘lishi mumkin.</p></div>
+<div class="card-item"><h3>O‘tkazuvchanlik</h3><p>Ko‘plab metallar issiqlik va elektr tokini yaxshi o‘tkazadi. Yog‘och, rezina va plastmassa odatda elektr izolyatorlaridir.</p></div>
+</div>
+<div class="sim"><h3>⚡ Materialni tekshiring</h3><p>Materialni tanlab, elektr o‘tkazuvchanligi haqida taxmin qiling.</p><div class="controls"><select id="material"><option value="">Material tanlang…</option><option value="metal">Mis sim</option><option value="rubber">Rezina</option><option value="wood">Quruq yog‘och</option><option value="plastic">Plastmassa</option></select><button class="action primary" onclick="checkMaterial()">Natijani ko‘rish</button></div><div id="materialResult" class="feedback"></div><p class="small">Bu nazariy model. Elektr bilan tajribani faqat o‘qituvchi nazoratida, xavfsiz past kuchlanishli jihozlarda bajaring.</p></div>
+</section>
+<section>
+<h2>♨️ 7. Qaynash va bug‘lanish</h2>
+<p>Bug‘lanish suyuqlik sirtida turli haroratlarda yuz beradi. Qaynashda esa suyuqlik ichida ham bug‘ pufakchalari hosil bo‘ladi.</p>
+<div class="grid">
+<div class="card-item"><h3>Bug‘lanish</h3><p>Harorat ortishi, sirt maydoni kattalashishi va havo harakati kuchayishi bug‘lanishni tezlashtiradi.</p></div>
+<div class="card-item"><h3>Qaynash</h3><p>Muayyan bosimda suyuqlik qaynash haroratiga yetganda uning butun hajmida bug‘ pufakchalari paydo bo‘ladi. Suv dengiz sathiga yaqin bosimda taxminan 100°C da qaynaydi.</p></div>
+</div>
+<div class="sim"><h3>🌡️ Harorat simulyatsiyasi</h3><p>Haroratni o‘zgartiring va zarrachalar harakatining soddalashtirilgan modelini kuzating.</p><div class="controls"><label for="temp">Harorat:</label><input id="temp" type="range" min="10" max="110" value="25" oninput="tempSim()"><b><span id="tempVal">25</span>°C</b></div><div class="stage"><div><div class="big" id="waterIcon">💧</div><div id="tempText">Suyuqlik bug‘lanmoqda</div><div id="particles">·  · ·   ·  · ·</div></div></div><p class="small">Model suv uchun odatiy atmosfera bosimini taxmin qiladi. Haqiqiy qaynash harorati bosimga bog‘liq.</p></div>
+</section>
+<section>
+<h2>⚛️ 8. Fizik o‘zgarishlar</h2>
+<p>Fizik o‘zgarishda moddaning shakli, o‘lchami yoki agregat holati o‘zgaradi, lekin moddaning kimyoviy tarkibi saqlanadi.</p>
+<div class="grid">
+<div class="card-item"><h3>Qaytar o‘zgarish</h3><p>Muzning erib suvga aylanishi va suvning yana muzlashi — qaytar fizik o‘zgarish misoli.</p></div>
+<div class="card-item"><h3>Qaytishi qiyin o‘zgarish</h3><p>Shishaning sinishi yoki qog‘ozning maydalanishi fizik o‘zgarishdir, ammo dastlabki holatga qaytarish qiyin. “Qaytmas” degani har doim kimyoviy reaksiya degani emas.</p></div>
+</div>
+<div class="sim"><h3>🔍 O‘zgarishni tasniflang</h3><div class="controls"><select id="change"><option value="">Jarayon tanlang…</option><option value="ice">Muzning erishi</option><option value="glass">Shishaning sinishi</option><option value="paper">Qog‘ozning maydalanishi</option><option value="burn">Qog‘ozning yonishi</option></select><button class="action primary" onclick="checkChange()">Tekshirish</button></div><div id="changeResult" class="feedback"></div></div>
+</section>
+<section>
+<h2>🧊 9. Moddalarning erish va qotish jarayoni</h2>
+<p>Erish — qattiq moddaning issiqlik yutib suyuqlikka aylanishi. Qotish — suyuqlikning issiqlik berib qattiq holatga o‘tishi.</p>
+<div class="grid">
+<div class="card-item"><h3>Erish harorati</h3><p>Toza modda muayyan bosimda o‘ziga xos erish haroratiga ega. Masalan, odatiy bosimda sof muz taxminan 0°C da eriydi.</p></div>
+<div class="card-item"><h3>Eruvchanlik bilan farqi</h3><p>Erish — qattiq moddaning suyuqlikka aylanishi. Eruvchanlik esa, masalan, tuzning suvda qancha miqdorda erishi mumkinligini bildiradi. Bular boshqa-boshqa tushunchalardir.</p></div>
+</div>
+<div class="sim"><h3>🧊 Muzni isitish modeli</h3><div class="controls"><label for="heat">Isitish darajasi:</label><input id="heat" type="range" min="-20" max="20" value="-10" oninput="meltSim()"><b><span id="heatVal">-10</span>°C</b></div><div class="stage"><div><div class="big" id="iceIcon">🧊</div><div id="meltText">Muz — qattiq holat</div><div class="bar"><span id="meltBar" style="width:25%"></span></div></div></div><p class="small">Soddalashtirilgan model: muzning erishi odatiy atmosfera bosimida 0°C atrofida sodir bo‘ladi.</p></div>
+</section>
+<section>
+<h2>🏆 10. BSB — bilimni sinash</h2>
+<p>Quyidagi savollar 1–9-mavzular bo‘yicha bilimni mustahkamlash uchun tuzilgan. Javoblarni belgilang va natijani tekshiring.</p>
+<form id="quizForm">
+<div class="quiz-question"><b>1. Organizm uchun asosiy energiya manbalaridan biri qaysi?</b><label><input type="radio" name="q1" value="a"> Vitaminlar</label><label><input type="radio" name="q1" value="b"> Uglevodlar</label><label><input type="radio" name="q1" value="c"> Suv</label></div>
+<div class="quiz-question"><b>2. Oziq moddalar ko‘p miqdorda qayerda so‘riladi?</b><label><input type="radio" name="q2" value="a"> Ingichka ichakda</label><label><input type="radio" name="q2" value="b"> Qizilo‘ngachda</label><label><input type="radio" name="q2" value="c"> Og‘iz bo‘shlig‘ida</label></div>
+<div class="quiz-question"><b>3. Qonni yurakdan olib chiqadigan tomirlar qanday ataladi?</b><label><input type="radio" name="q3" value="a"> Venalar</label><label><input type="radio" name="q3" value="b"> Kapillyarlar</label><label><input type="radio" name="q3" value="c"> Arteriyalar</label></div>
+<div class="quiz-question"><b>4. Infeksiya xavfini kamaytirishning oddiy yo‘li qaysi?</b><label><input type="radio" name="q4" value="a"> Qo‘lni yuvmaslik</label><label><input type="radio" name="q4" value="b"> Qo‘lni sovun bilan yuvish</label><label><input type="radio" name="q4" value="c"> Yetarli uxlamaslik</label></div>
+<div class="quiz-question"><b>5. Oziq zanjirida ishlab chiqaruvchi odatda qaysi?</b><label><input type="radio" name="q5" value="a"> Tulki</label><label><input type="radio" name="q5" value="b"> O‘t</label><label><input type="radio" name="q5" value="c"> Quyon</label></div>
+<div class="quiz-question"><b>6. Havo qanday xususiyatga ega?</b><label><input type="radio" name="q6" value="a"> Massasi yo‘q</label><label><input type="radio" name="q6" value="b"> Faqat rangi bor</label><label><input type="radio" name="q6" value="c"> Massasi va hajmi bor</label></div>
+<div class="quiz-question"><b>7. Bug‘lanish qayerda sodir bo‘ladi?</b><label><input type="radio" name="q7" value="a"> Faqat 100°C da</label><label><input type="radio" name="q7" value="b"> Suyuqlik sirtida, turli haroratlarda</label><label><input type="radio" name="q7" value="c"> Faqat suyuqlik ichida</label></div>
+<div class="quiz-question"><b>8. Muzning erishi qanday o‘zgarish?</b><label><input type="radio" name="q8" value="a"> Fizik o‘zgarish</label><label><input type="radio" name="q8" value="b"> Kimyoviy reaksiya</label><label><input type="radio" name="q8" value="c"> Yonish</label></div>
+<div class="quiz-question"><b>9. Sof muz odatiy bosimda taxminan qaysi haroratda eriydi?</b><label><input type="radio" name="q9" value="a"> 100°C</label><label><input type="radio" name="q9" value="b"> 0°C</label><label><input type="radio" name="q9" value="c"> 50°C</label></div>
+<div class="quiz-question"><b>10. Qotish jarayonida modda nima qiladi?</b><label><input type="radio" name="q10" value="a"> Suyuqlikdan qattiq holatga o‘tadi</label><label><input type="radio" name="q10" value="b"> Qattiq holatdan gazga o‘tadi</label><label><input type="radio" name="q10" value="c"> Har doim yonadi</label></div>
+<button type="button" class="action primary" onclick="gradeQuiz()">Natijani hisoblash</button>
+<button type="reset" class="action" onclick="document.getElementById('quizResult').textContent=''">Qayta ishlash</button>
+<div id="quizResult" class="feedback" aria-live="polite"></div>
+</form>
+</section>
+</main>
+<footer><p>6-sinf Tabiiy fanlar — elektron interaktiv darsliklar to‘plami</p><p class="small">O‘quv maqsadida tayyorlangan. Simulyatsiyalar soddalashtirilgan modellar bo‘lib, haqiqiy laboratoriya tajribasining o‘rnini to‘liq bosmaydi.</p></footer>
+<script>
+function showTab(index){
+ const sections=document.querySelectorAll('main section'),buttons=document.querySelectorAll('nav button');
+ sections.forEach((sec,i)=>sec.classList.toggle('active',i===index));
+ buttons.forEach((btn,i)=>{btn.classList.toggle('active',i===index);btn.setAttribute('aria-current',i===index?'page':'false')});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function checkFood(){
+ const chosen=[...document.querySelectorAll('.food')].filter(x=>x.checked).length;
+ const el=document.getElementById('foodResult');
+ el.textContent=chosen>=4?'Ajoyib! Barcha asosiy guruhlar tanlandi. Suv ichishni ham unutmang.':chosen>=3?'Yaxshi boshlanish. Muvozanat uchun qolgan guruhlarni ham ko‘rib chiqing.':'Tarelka xilma-xil bo‘lishi uchun bir nechta oziq guruhini tanlang.';
+}
+const digestive=['Og‘iz bo‘shlig‘i','Qizilo‘ngach','Oshqozon','Ingichka ichak','Yo‘g‘on ichak'];
+let digestIndex=0;
+function digestStep(){
+ const chosen=document.getElementById('digest').value,el=document.getElementById('digestResult');
+ if(!chosen){el.textContent='Avval ro‘yxatdan a’zoni tanlang.';return}
+ if(chosen===digestive[digestIndex]){
+  document.getElementById('digestStage').textContent='✅ '+chosen;
+  digestIndex++;
+  el.textContent=digestIndex===digestive.length?'Ajoyib! Asosiy ketma-ketlikni tugatdingiz.':'To‘g‘ri. Endi keyingi a’zoni tanlang.';
+ }else{el.textContent='Bu bosqich to‘g‘ri emas. Ketma-ketlikni eslang: '+digestive.join(' → ')+'.'}
+}
+function resetDigest(){digestIndex=0;document.getElementById('digestStage').textContent='Ovqat avval qayerga tushadi?';document.getElementById('digestResult').textContent='';document.getElementById('digest').value=''}
+function breathSim(){
+ const v=+document.getElementById('breath').value;
+ document.getElementById('breathVal').textContent=v+'%';
+ document.getElementById('lungBar').style.width=v+'%';
+ document.getElementById('lung').style.transform='scale('+(0.7+v/250)+')';
+ document.getElementById('breathText').textContent=v<35?'Nafas chiqarishga yaqin holat':v>65?'Nafas olishga yaqin holat':'O‘pka hajmi o‘rtacha';
+}
+function checkHygiene(){
+ const v=document.getElementById('hygiene').value,el=document.getElementById('hygieneResult');
+ if(!v){el.textContent='Avval javob tanlang.';return}
+ el.textContent=v==='good'?'To‘g‘ri! Qo‘lni sovun bilan yuvish infeksiya tarqalish xavfini kamaytiradi.':'Bu odat infeksiya tarqalish xavfini oshirishi mumkin. Qo‘lni yuvish va shaxsiy gigiyenaga rioya qilish kerak.';
+}
+function checkChain(){
+ const vals=[document.getElementById('chain1').value,document.getElementById('chain2').value,document.getElementById('chain3').value];
+ document.getElementById('chainResult').textContent=vals[0]==='plant'&&vals[1]==='rabbit'&&vals[2]==='fox'?'To‘g‘ri! O‘t → quyon → tulki.':'Qayta urinib ko‘ring: o‘simlikni o‘simlikxo‘r hayvon, uni esa yirtqich yeyishi mumkin.';
+}
+function checkMaterial(){
+ const v=document.getElementById('material').value,el=document.getElementById('materialResult');
+ const messages={metal:'Mis elektr tokini yaxshi o‘tkazadi. Uni faqat xavfsiz, past kuchlanishli o‘quv qurilmasida sinash mumkin.',rubber:'Rezina odatda elektr izolyatori hisoblanadi.',wood:'Quruq yog‘och odatda elektrni yomon o‘tkazadi; namlik xususiyatni o‘zgartirishi mumkin.',plastic:'Plastmassa odatda elektr izolyatori hisoblanadi.'};
+ el.textContent=v?messages[v]:'Avval materialni tanlang.';
+}
+function tempSim(){
+ const t=+document.getElementById('temp').value;
+ document.getElementById('tempVal').textContent=t;
+ document.getElementById('waterIcon').textContent=t>=100?'♨️':t>=40?'💨':'💧';
+ document.getElementById('tempText').textContent=t>=100?'Model bo‘yicha qaynash holati (taxminan 100°C)':t>=40?'Bug‘lanish tezlashadi':'Suyuqlik sekinroq bug‘lanadi';
+ document.getElementById('particles').textContent=t>=100?'○  ○   ○  ○   ○':t>=40?'·  ·   · ·   ·':'·   ·  ·';
+}
+function checkChange(){
+ const v=document.getElementById('change').value,el=document.getElementById('changeResult');
+ const m={ice:'To‘g‘ri: muzning erishi — qaytar fizik o‘zgarish.',glass:'To‘g‘ri: shishaning sinishi — fizik o‘zgarish, lekin qaytarish qiyin.',paper:'To‘g‘ri: qog‘ozni maydalash — fizik o‘zgarish, qaytarish qiyin.',burn:'To‘g‘ri: qog‘ozning yonishi — yangi moddalar hosil bo‘ladigan kimyoviy o‘zgarish.'};
+ el.textContent=v?m[v]:'Avval jarayonni tanlang.';
+}
+function meltSim(){
+ const t=+document.getElementById('heat').value;
+ document.getElementById('heatVal').textContent=t;
+ document.getElementById('iceIcon').textContent=t<0?'🧊':t===0?'🧊💧':'💧';
+ document.getElementById('meltText').textContent=t<0?'Muz — qattiq holat':t===0?'Erish jarayoni sodir bo‘lishi mumkin':'Suv — suyuq holat';
+ document.getElementById('meltBar').style.width=((t+20)/40*100)+'%';
+}
+function gradeQuiz(){
+ const answers={q1:'b',q2:'a',q3:'c',q4:'b',q5:'b',q6:'c',q7:'b',q8:'a',q9:'b',q10:'a'};
+ let score=0,answered=0;
+ for(const [q,a] of Object.entries(answers)){const selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){answered++;if(selected.value===a)score++}}
+ const el=document.getElementById('quizResult');
+ el.textContent='Natija: '+score+'/10. Javob berilgan: '+answered+'/10. '+(score===10?'A’lo! Barcha javoblar to‘g‘ri.':score>=7?'Yaxshi natija. Xato savollarni qayta ko‘rib chiqing.':'Mavzularni takrorlang va testni yana bajaring.');
+}
+tempSim();meltSim();breathSim();
+</script>
+</body>
+</html>
