@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="uz" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-Sinf Tabiiy Fanlar: BSB Interaktiv Simulyatsiyalari</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
+        @keyframes flow {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-flow {
+            animation: flow 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 h-full flex flex-col">
+
+    <header class="bg-emerald-600 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-emerald-700 p-2 rounded-xl text-xl shadow-inner">
+                    <i class="fa-solid fa-flask-vial"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">6-Sinf Tabiiy Fanlar: BSB Simulyatsiyasi</h1>
+                    <p class="text-xs text-emerald-100">Interaktiv o'quv va amaliyot platformasi</p>
+                </div>
+            </div>
+            
+            <!-- Gamification Score & Badges Summary -->
+            <div class="flex items-center space-x-4 mt-2 sm:mt-0 bg-emerald-700/60 px-4 py-2 rounded-xl backdrop-blur-sm border border-emerald-500/40">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-star text-amber-300"></i>
+                    <span class="font-bold text-sm" id="global-score">0 ball</span>
+                </div>
+                <div class="h-4 w-px bg-emerald-500"></div>
+                <div class="flex items-center space-x-1" id="global-badges">
+                    <span class="text-xs bg-emerald-800/80 px-2 py-1 rounded-lg text-emerald-200 border border-emerald-600">
+                        <i class="fa-solid fa-award text-amber-400 mr-1"></i> 0 nishon
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 flex flex-col">
+        
+        <!-- Topic Selection Tabs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <button onclick="switchTab('topic1')" id="btn-topic1" class="p-4 rounded-2xl border-2 transition-all flex items-center space-x-4 text-left shadow-sm bg-white border-emerald-500 ring-2 ring-emerald-500/20">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl flex-shrink-0">
+                    <i class="fa-solid fa-apple-whole"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">1-Mavzu</span>
+                    <h2 class="font-bold text-base text-slate-800">Ovqat hazm qilish sistemasi</h2>
+                </div>
+            </button>
+
+            <button onclick="switchTab('topic2')" id="btn-topic2" class="p-4 rounded-2xl border-2 transition-all flex items-center space-x-4 text-left shadow-sm bg-white border-slate-200 hover:border-emerald-300">
+                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl flex-shrink-0">
+                    <i class="fa-solid fa-flask"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">2-Mavzu</span>
+                    <h2 class="font-bold text-base text-slate-800">Uy sharoitida kimyoviy reaksiyalar</h2>
+                </div>
+            </button>
+        </div>
+
+        <!-- ================= TOPIC 1 CONTAINER ================= -->
+        <div id="container-topic1" class="space-y-6 flex-1 flex flex-col">
+            <!-- Sub-task switcher for Topic 1 -->
+            <div class="flex space-x-2 border-b border-slate-200 pb-3">
+                <button onclick="switchSubTopic1('task1')" id="btn-sub1-1" class="px-4 py-2 rounded-xl text-sm font-medium transition-all bg-emerald-600 text-white shadow-sm">
+                    1. "Hazm yo'lidagi sayohat" (3D Simulyatsiya)
+                </button>
+                <button onclick="switchSubTopic1('task2')" id="btn-sub1-2" class="px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">
+                    2. Organlar va hayvonlar bilan solishtirish
+                </button>
+            </div>
+
+            <!-- Subtask 1.1: Hazm yo'lidagi sayohat -->
+            <div id="subtopic1-task1" class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 flex-1 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800">Topshiriq 1: Hazm yo'lidagi sayohat</h3>
+                            <p class="text-sm text-slate-500">Olma bo'lagining hazm yo'li bo'ylab qadam-baqadam harakatlanishini kuzating va boshqaring.</p>
+                        </div>
+                        <span class="text-xs bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-200 font-medium">
+                            Bosqich: <span id="digest-step-indicator">1</span>/4
+                        </span>
+                    </div>
+
+                    <!-- Interactive Digestive Visual Stage -->
+                    <div class="bg-slate-900 text-white rounded-2xl p-6 relative overflow-hidden min-h-[320px] flex flex-col justify-center items-center shadow-inner">
+                        <!-- Background decoration -->
+                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+                        <!-- Step 1: Og'iz bo'shlig'i -->
+                        <div id="digest-stage-1" class="digest-stage text-center space-y-4 z-10 w-full max-w-md">
+                            <div class="text-5xl animate-bounce">🍎</div>
+                            <h4 class="font-bold text-lg text-emerald-400">1. Og'iz bo'shlig'i</h4>
+                            <p class="text-xs text-slate-300">Olma og'izga tushdi. Mexanik chaynash va so'lak ta'sirida kimyoviy parchalanish boshlanadi.</p>
+                            <div class="flex justify-center gap-3 pt-2">
+                                <button onclick="triggerDigestAction(1, 'chew')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow transition flex items-center space-x-2">
+                                    <i class="fa-solid fa-teeth"></i> <span>Chaynash</span>
+                                </button>
+                                <button onclick="triggerDigestAction(1, 'saliva')" class="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow transition flex items-center space-x-2">
+                                    <i class="fa-solid fa-droplet"></i> <span>So'lak ajratish</span>
+                                </button>
+                            </div>
+                            <div id="feedback-1" class="text-xs text-amber-300 font-medium min-h-[20px]"></div>
+                        </div>
+
+                        <!-- Step 2: Qizilo'ngach -->
+                        <div id="digest-stage-2" class="digest-stage hidden text-center space-y-4 z-10 w-full max-w-md">
+                            <div class="text-5xl animate-flow">🫁⬇️</div>
+                            <h4 class="font-bold text-lg text-emerald-400">2. Qizilo'ngach</h4>
+                            <p class="text-xs text-slate-300">Luqma to'lqinsimon (peristaltik) harakatlar yordamida oshqozonga tomon pastga qarab harakatlanmoqda.</p>
+                            <button onclick="triggerDigestAction(2, 'peristalsis')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow transition">
+                                <i class="fa-solid fa-wave-square mr-1"></i> Peristaltik harakatni boshlash
+                            </button>
+                            <div id="feedback-2" class="text-xs text-amber-300 font-medium min-h-[20px]"></div>
+                        </div>
+
+                        <!-- Step 3: Oshqozon -->
+                        <div id="digest-stage-3" class="digest-stage hidden text-center space-y-4 z-10 w-full max-w-md">
+                            <div class="text-5xl animate-pulse-slow">🥣</div>
+                            <h4 class="font-bold text-lg text-emerald-400">3. Oshqozon</h4>
+                            <p class="text-xs text-slate-300">Oshqozon shiralari va kislotalar yordamida ovqat quyuq bulamaqqa aylantirilmoqda.</p>
+                            <button onclick="triggerDigestAction(3, 'acid')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow transition">
+                                <i class="fa-solid fa-flask-vial mr-1"></i> Oshqozon shirasini qo'shish
+                            </button>
+                            <div id="feedback-3" class="text-xs text-amber-300 font-medium min-h-[20px]"></div>
+                        </div>
+
+                        <!-- Step 4: Ingichka ichak -->
+                        <div id="digest-stage-4" class="digest-stage hidden text-center space-y-4 z-10 w-full max-w-md">
+                            <div class="text-5xl animate-bounce">🩸✨</div>
+                            <h4 class="font-bold text-lg text-emerald-400">4. Ingichka ichak</h4>
+                            <p class="text-xs text-slate-300">Oziq moddalar villilar orqali qonga so'rilib, butun tana bo'ylab tarqatiladi. Sayohat muvaffaqiyatli yakunlandi!</p>
+                            <button onclick="triggerDigestAction(4, 'absorb')" class="bg-amber-500 hover:bg-amber-400 text-slate-900 px-4 py-2 rounded-xl text-xs font-bold shadow transition">
+                                <i class="fa-solid fa-award mr-1"></i> Mukofotni olish (+25 ball)
+                            </button>
+                            <div id="feedback-4" class="text-xs text-amber-300 font-medium min-h-[20px]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step Navigator Footer -->
+                <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100">
+                    <button onclick="prevDigestStep()" id="digest-prev-btn" disabled class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-400 cursor-not-allowed">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Oldingi
+                    </button>
+                    <button onclick="nextDigestStep()" id="digest-next-btn" class="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700 transition">
+                        Keyingi bosqich <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Subtask 1.2: Organlar va hayvonlar bilan solishtirish -->
+            <div id="subtopic1-task2" class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 hidden flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-1">Topshiriq 2: Organlar va hayvonlar bilan solishtirish</h3>
+                    <p class="text-sm text-slate-500 mb-4">Hazm organlarini to'g'ri funksiyalari bilan moslashtiring hamda mushuk va odam hazm sistemasini taqqoslang.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Drag/Match column -->
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                            <h4 class="font-bold text-xs text-slate-600 uppercase tracking-wider mb-2">1-Qism: Funksiyalarni moslashtirish</h4>
+                            
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-slate-200 text-xs shadow-sm">
+                                    <span class="font-semibold text-slate-700">Og'iz bo'shlig'i</span>
+                                    <select id="match-1" onchange="checkMatch(1)" class="bg-slate-100 border border-slate-300 rounded-lg p-1.5 text-xs focus:ring-2 focus:ring-emerald-500">
+                                        <option value="">-- Tanlang --</option>
+                                        <option value="correct">Mexanik chaynash va so'lak ta'sirida parchalash</option>
+                                        <option value="wrong">Oziq moddalarni qonga so'rish</option>
+                                        <option value="wrong2">Oshqozon shirasini ajratish</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-slate-200 text-xs shadow-sm">
+                                    <span class="font-semibold text-slate-700">Qizilo'ngach</span>
+                                    <select id="match-2" onchange="checkMatch(2)" class="bg-slate-100 border border-slate-300 rounded-lg p-1.5 text-xs focus:ring-2 focus:ring-emerald-500">
+                                        <option value="">-- Tanlang --</option>
+                                        <option value="wrong">Ovqatni hazm qilish va saqlash</option>
+                                        <option value="correct">Luqmani oshqozonga o'tkazish (peristaltika)</option>
+                                        <option value="wrong2">So'lak ishlab chiqarish</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-slate-200 text-xs shadow-sm">
+                                    <span class="font-semibold text-slate-700">Ingichka ichak</span>
+                                    <select id="match-3" onchange="checkMatch(3)" class="bg-slate-100 border border-slate-300 rounded-lg p-1.5 text-xs focus:ring-2 focus:ring-emerald-500">
+                                        <option value="">-- Tanlang --</option>
+                                        <option value="wrong">Tishlar yordamida parchalash</option>
+                                        <option value="correct">Oziq moddalarning qonga to'liq so'rilishi</option>
+                                        <option value="wrong2">Faqat suvni so'rish</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comparison column: Cat vs Human -->
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                            <h4 class="font-bold text-xs text-slate-600 uppercase tracking-wider mb-2">2-Qism: Mushuk va Odam hazm sistemasi</h4>
+                            <p class="text-xs text-slate-500 mb-2">Mushuk yirtqich hayvon bo'lgani uchun uning oshqozon-ichak trakti odamnikidan farq qiladi.</p>
+                            
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center space-x-2 bg-white p-2.5 rounded-xl border border-slate-200 cursor-pointer">
+                                    <input type="checkbox" id="comp-1" onchange="checkComparison()" class="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
+                                    <span class="text-slate-700">Mushuklarda go'shtni hazm qilish uchun oshqozon kislotaliligi yuqori bo'ladi.</span>
+                                </label>
+                                <label class="flex items-center space-x-2 bg-white p-2.5 rounded-xl border border-slate-200 cursor-pointer">
+                                    <input type="checkbox" id="comp-2" onchange="checkComparison()" class="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
+                                    <span class="text-slate-700">Odamlar ham, mushuklar ham o'simlik va go'sht mahsulotlarini bir xil hazm qiladi. (Noto'g'ri)</span>
+                                </label>
+                                <label class="flex items-center space-x-2 bg-white p-2.5 rounded-xl border border-slate-200 cursor-pointer">
+                                    <input type="checkbox" id="comp-3" onchange="checkComparison()" class="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4">
+                                    <span class="text-slate-700">Mushukning ichaklari tana uzunligiga nisbatan odamnikidan qisqaroq.</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center">
+                    <span id="topic1-task2-status" class="text-xs font-semibold text-amber-600">Barcha savollarga javob bering...</span>
+                    <button onclick="completeTopic1Task2()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow transition">
+                        Tekshirish va Ball Olish (+30 ball)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TOPIC 2 CONTAINER ================= -->
+        <div id="container-topic2" class="space-y-6 flex-1 flex flex-col hidden">
+            <!-- Sub-task switcher for Topic 2 -->
+            <div class="flex space-x-2 border-b border-slate-200 pb-3">
+                <button onclick="switchSubTopic2('lab')" id="btn-sub2-1" class="px-4 py-2 rounded-xl text-sm font-medium transition-all bg-amber-600 text-white shadow-sm">
+                    1. "Virtual Kimyo Laboratoriyasi"
+                </button>
+                <button onclick="switchSubTopic2('micro')" id="btn-sub2-2" class="px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">
+                    2. "Molekulyar darajadagi kashfiyot"
+                </button>
+            </div>
+
+            <!-- Subtask 2.1: Virtual Kimyo Laboratoriyasi -->
+            <div id="subtopic2-lab" class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-1">Topshiriq 3: Virtual Kimyo Laboratoriyasi</h3>
+                    <p class="text-sm text-slate-500 mb-4">Uy sharoitida uchraydigan uchta qiziqarli kimyoviy jarayon va reaksiyani sinab ko'ring.</p>
+
+                    <!-- Experiment Selection Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                        <button onclick="selectExperiment(1)" id="exp-btn-1" class="p-3 rounded-xl border-2 border-amber-500 bg-amber-50 text-amber-900 font-semibold text-xs text-left transition flex items-center space-x-3">
+                            <span class="text-xl">🧪</span>
+                            <div>
+                                <div class="font-bold">1. Sirka va soda</div>
+                                <div class="text-[10px] opacity-75">Gaz ajralishi</div>
+                            </div>
+                        </button>
+                        <button onclick="selectExperiment(2)" id="exp-btn-2" class="p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-700 font-semibold text-xs text-left transition flex items-center space-x-3 hover:border-amber-300">
+                            <span class="text-xl">🥔</span>
+                            <div>
+                                <div class="font-bold">2. Olma qorayishi</div>
+                                <div class="text-[10px] text-slate-500">Rang o'zgarishi</div>
+                            </div>
+                        </button>
+                        <button onclick="selectExperiment(3)" id="exp-btn-3" class="p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-700 font-semibold text-xs text-left transition flex items-center space-x-3 hover:border-amber-300">
+                            <span class="text-xl">🔩</span>
+                            <div>
+                                <div class="font-bold">3. Temir zanglashi</div>
+                                <div class="text-[10px] text-slate-500">Taymlaps jarayon</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Experiment Simulator Viewport -->
+                    <div class="bg-slate-900 text-white rounded-2xl p-6 relative overflow-hidden min-h-[280px] flex flex-col justify-center items-center shadow-inner">
+                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+                        <!-- Experiment 1: Vinegar & Soda -->
+                        <div id="experiment-view-1" class="experiment-view text-center space-y-4 z-10 w-full max-w-md">
+                            <div class="text-6xl" id="exp1-visual">🥤</div>
+                            <h4 class="font-bold text-base text-amber-400">Sirka kislotasi va Choy sodasi</h4>
+                            <p class="text-xs text-slate-300">Soda stakanga solinganda darhol karbonat angidrid ($CO_2$) gazi pufakchalari ajralib chiqadi.</p>
+                            <button onclick="runExperiment1()" class="bg-amber-500 hover:bg-amber-400 text-slate-900 px-4 py-2 rounded-xl text-xs font-bold shadow transition">
+                                <i class="fa-solid fa-play mr-1"></i> Tajribani boshlash (Soda solish)
+                            </button>
+                            <div id="exp1-result" class="text-xs text-emerald-400 font-medium min-h-[20px]"></div>
+                        </div>
+
+                        <!-- Experiment 2: Apple Browning -->
+                        <div id="experiment-view-2" class="experiment-view hidden text-center space-y-4 z-10 w-full max-w-md">
+                            <div class="text-6xl" id="exp2-visual">🍏</div>
+                            <h4 class="font-bold text-base text-amber-400">Olma va kartoshkaning qorayishi</h4>
+                            <p class="text-xs text-slate-300">Kesilgan meva havoadagi kislorod bilan reaksiyaga kirishib, jigarrang tusga kiradi (oksidlanish).</p>
+                            <button onclick="runExperiment2()" class="bg-amber-500 hover:bg-amber-400 text-slate-900 px-4 py-2 rounded-xl text-xs font-bold shadow transition">
+                                <i class="fa-solid fa-forward mr-1"></i> Vaqtni tezlashtirish (Taymlaps)
+                            </button>
+                            <div id="exp2-result" class="text-xs text-emerald-400 font-medium min-h-[20px]"></div>
+                        </div>
+
+                        <!-- Experiment 3: Iron Rusting -->
+                        <div id="experiment-view-3" class="experiment-view hidden text-center space-y-4 z-10 w-full max-w-md">
+                            <div class="text-6xl" id="exp3-visual">🔩</div>
+                            <h4 class="font-bold text-base text-amber-400">Temir mixning zanglashi</h4>
+                            <p class="text-xs text-slate-300">Nam muhitda temir kislorod bilan birikib, qizg'ish-jigarrang temir oksidini (zang) hosil qiladi.</p>
+                            <button onclick="runExperiment3()" class="bg-amber-500 hover:bg-amber-400 text-slate-900 px-4 py-2 rounded-xl text-xs font-bold shadow transition">
+                                <i class="fa-solid fa-clock-rotate-left mr-1"></i> 7 kunlik taymlapsni ko'rish
+                            </button>
+                            <div id="exp3-result" class="text-xs text-emerald-400 font-medium min-h-[20px]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+                    <span><i class="fa-solid fa-circle-info text-amber-500 mr-1"></i> Barcha 3 ta tajribani yakunlang va ball to'plang.</span>
+                    <span id="lab-progress-text" class="font-bold text-amber-600">Bajarildi: 0 / 3</span>
+                </div>
+            </div>
+
+            <!-- Subtask 2.2: Molekulyar darajadagi kashfiyot -->
+            <div id="subtopic2-micro" class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 hidden flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-1">Topshiriq 4: Molekulyar darajadagi kashfiyot</h3>
+                    <p class="text-sm text-slate-500 mb-4">Kattalashtiruvchi oynani (Mikroskopni) reaksiya idishiga olib keling va atomlar o'zgarishini kuzating.</p>
+
+                    <!-- Microscopic Interactive View -->
+                    <div class="bg-slate-900 text-white rounded-2xl p-6 relative overflow-hidden min-h-[280px] flex flex-col justify-center items-center shadow-inner">
+                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+                        <div id="micro-view-box" class="text-center space-y-4 z-10 w-full max-w-md">
+                            <div class="flex justify-center items-center space-x-4 text-4xl">
+                                <span class="bg-slate-800 p-3 rounded-2xl border border-slate-700">🔴🔵</span>
+                                <i class="fa-solid fa-arrow-right text-emerald-400"></i>
+                                <span class="bg-slate-800 p-3 rounded-2xl border border-slate-700" id="micro-result-atoms">⚪🟢⚪</span>
+                            </div>
+                            <h4 class="font-bold text-base text-cyan-400" id="micro-title">Oddiy moddalar birikishi</h4>
+                            <p class="text-xs text-slate-300" id="micro-desc">Mikroskop ostida reaksiyaga kirishayotgan atomlarning yangi molekulalar hosil qilish jarayoni ko'rinmoqda.</p>
+                            
+                            <div class="flex justify-center space-x-3 pt-2">
+                                <button onclick="activateMicroscope('reaction1')" class="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow transition">
+                                    Soda + Sirka atomlari
+                                </button>
+                                <button onclick="activateMicroscope('reaction2')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow transition">
+                                    Temir + Kislorod
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center">
+                    <span class="text-xs text-slate-500">Molekulyar simulyatsiyani o'rganing va yakuniy nishonni qo'lga kiriting!</span>
+                    <button onclick="completeMicroTask()" class="bg-amber-500 hover:bg-amber-400 text-slate-900 px-4 py-2 rounded-xl text-xs font-bold shadow transition">
+                        Mavzuni Yakunlash (+35 ball) <i class="fa-solid fa-trophy ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Modal for Feedback and Gamification -->
+    <div id="custom-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center space-y-4 shadow-xl border border-slate-100 transform transition-all">
+            <div id="modal-icon" class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl mx-auto flex items-center justify-center text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h3 id="modal-title" class="font-bold text-lg text-slate-800">Tabriklaymiz!</h3>
+                <p id="modal-text" class="text-xs text-slate-500 mt-1">Siz topshiriqni muvaffaqiyatli yakunladingiz va ballarga ega bo'ldingiz.</p>
+            </div>
+            <button onclick="closeModal()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-2xl text-xs font-semibold shadow transition">
+                Davom etish
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // State Variables
+        let totalScore = 0;
+        let badgesCount = 0;
+        let currentDigestStep = 1;
+        let labCompletedCount = 0;
+        let completedLabs = { 1: false, 2: false, 3: false };
+        let task12Done = false;
+        let microDone = false;
+
+        // Tab Switching Logic
+        function switchTab(topic) {
+            const btn1 = document.getElementById('btn-topic1');
+            const btn2 = document.getElementById('btn-topic2');
+            const cont1 = document.getElementById('container-topic1');
+            const cont2 = document.getElementById('container-topic2');
+
+            if (topic === 'topic1') {
+                btn1.className = "p-4 rounded-2xl border-2 transition-all flex items-center space-x-4 text-left shadow-sm bg-white border-emerald-500 ring-2 ring-emerald-500/20";
+                btn2.className = "p-4 rounded-2xl border-2 transition-all flex items-center space-x-4 text-left shadow-sm bg-white border-slate-200 hover:border-emerald-300";
+                cont1.classList.remove('hidden');
+                cont2.classList.add('hidden');
+            } else {
+                btn2.className = "p-4 rounded-2xl border-2 transition-all flex items-center space-x-4 text-left shadow-sm bg-white border-amber-500 ring-2 ring-amber-500/20";
+                btn1.className = "p-4 rounded-2xl border-2 transition-all flex items-center space-x-4 text-left shadow-sm bg-white border-slate-200 hover:border-amber-300";
+                cont2.classList.remove('hidden');
+                cont1.classList.add('hidden');
+            }
+        }
+
+        function switchSubTopic1(sub) {
+            const sub1 = document.getElementById('subtopic1-task1');
+            const sub2 = document.getElementById('subtopic1-task2');
+            const btn1 = document.getElementById('btn-sub1-1');
+            const btn2 = document.getElementById('btn-sub1-2');
+
+            if (sub === 'task1') {
+                sub1.classList.remove('hidden');
+                sub2.classList.add('hidden');
+                btn1.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-emerald-600 text-white shadow-sm";
+                btn2.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
+            } else {
+                sub1.classList.add('hidden');
+                sub2.classList.remove('hidden');
+                btn2.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-emerald-600 text-white shadow-sm";
+                btn1.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
+            }
+        }
+
+        function switchSubTopic2(sub) {
+            const sub1 = document.getElementById('subtopic2-lab');
+            const sub2 = document.getElementById('subtopic2-micro');
+            const btn1 = document.getElementById('btn-sub2-1');
+            const btn2 = document.getElementById('btn-sub2-2');
+
+            if (sub === 'lab') {
+                sub1.classList.remove('hidden');
+                sub2.classList.add('hidden');
+                btn1.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-amber-600 text-white shadow-sm";
+                btn2.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
+            } else {
+                sub1.classList.add('hidden');
+                sub2.classList.remove('hidden');
+                btn2.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-amber-600 text-white shadow-sm";
+                btn1.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
+            }
+        }
+
+        // Digestive System Simulation Logic
+        function triggerDigestAction(step, action) {
+            const feedback = document.getElementById(`feedback-${step}`);
+            if (step === 1) {
+                if (action === 'chew') {
+                    feedback.textContent = "✅ Mexanik chaynash muvaffaqiyatli bajarildi! Olma mayda bo'laklarga bo'lindi.";
+                } else {
+                    feedback.textContent = "✅ So'lak ajraldi! Tarkibidagi fermentlar uglevodlarni parchalay boshladi.";
+                }
+            } else if (step === 2) {
+                feedback.textContent = "✅ Peristaltik to'lqinsimon harakatlar tufayli luqma pastga tushdi.";
+            } else if (step === 3) {
+                feedback.textContent = "✅ Oshqozon shirasi va kislota ta'sirida ovqat quyuq bulamaqqa aylandi.";
+            } else if (step === 4) {
+                addScore(25);
+                addBadge("Hazm ustasi");
+                feedback.textContent = "🎉 Oziq moddalar qonga so'rildi! Sayohat yakunlandi (+25 ball).";
+                showModal("Tabriklaymiz!", "Siz 'Hazm yo'lidagi sayohat' simulyatsiyasini mukammal yakunladingiz!");
+            }
+        }
+
+        function nextDigestStep() {
+            if (currentDigestStep < 4) {
+                document.getElementById(`digest-stage-${currentDigestStep}`).classList.add('hidden');
+                currentDigestStep++;
+                document.getElementById(`digest-stage-${currentDigestStep}`).classList.remove('hidden');
+                document.getElementById('digest-step-indicator').textContent = currentDigestStep;
+                document.getElementById('digest-prev-btn').disabled = false;
+                document.getElementById('digest-prev-btn').className = "px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition";
+                
+                if (currentDigestStep === 4) {
+                    document.getElementById('digest-next-btn').disabled = true;
+                    document.getElementById('digest-next-btn').className = "px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-400 cursor-not-allowed";
+                }
+            }
+        }
+
+        function prevDigestStep() {
+            if (currentDigestStep > 1) {
+                document.getElementById(`digest-stage-${currentDigestStep}`).classList.add('hidden');
+                currentDigestStep--;
+                document.getElementById(`digest-stage-${currentDigestStep}`).classList.remove('hidden');
+                document.getElementById('digest-step-indicator').textContent = currentDigestStep;
+                document.getElementById('digest-next-btn').disabled = false;
+                document.getElementById('digest-next-btn').className = "px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700 transition";
+                
+                if (currentDigestStep === 1) {
+                    document.getElementById('digest-prev-btn').disabled = true;
+                    document.getElementById('digest-prev-btn').className = "px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-400 cursor-not-allowed";
+                }
+            }
+        }
+
+        // Matching and Comparison Logic
+        function checkMatch(id) {
+            // Visual validation helper
+        }
+
+        function checkComparison() {
+            // Visual validation helper
+        }
+
+        function completeTopic1Task2() {
+            const m1 = document.getElementById('match-1').value;
+            const m2 = document.getElementById('match-2').value;
+            const m3 = document.getElementById('match-3').value;
+            const c1 = document.getElementById('comp-1').checked;
+            const c2 = document.getElementById('comp-2').checked;
+            const c3 = document.getElementById('comp-3').checked;
+
+            if (m1 === 'correct' && m2 === 'correct' && m3 === 'correct' && c1 && !c2 && c3) {
+                if (!task12Done) {
+                    task12Done = true;
+                    addScore(30);
+                    addBadge("Biolog");
+                }
+                showModal("Ajoyib!", "Barcha organlar va taqqoslash vazifalari to'g'ri bajarildi! (+30 ball)");
+            } else {
+                document.getElementById('topic1-task2-status').textContent = "⚠️ Ayrim javoblar xato yoki to'liq emas. Qaytadan tekshiring!";
+            }
+        }
+
+        // Virtual Chemistry Laboratory Logic
+        function selectExperiment(num) {
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`experiment-view-${i}`).classList.add('hidden');
+                document.getElementById(`exp-btn-${i}`).className = "p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-700 font-semibold text-xs text-left transition flex items-center space-x-3 hover:border-amber-300";
+            }
+            document.getElementById(`experiment-view-${num}`).classList.remove('hidden');
+            document.getElementById(`exp-btn-${num}`).className = "p-3 rounded-xl border-2 border-amber-500 bg-amber-50 text-amber-900 font-semibold text-xs text-left transition flex items-center space-x-3";
+        }
+
+        function runExperiment1() {
+            document.getElementById('exp1-visual').textContent = "🫧💥";
+            document.getElementById('exp1-result').textContent = "✅ Karbonat angidrid (CO2) pufakchalari gurillab ajralib chiqdi!";
+            if (!completedLabs[1]) {
+                completedLabs[1] = true;
+                labCompletedCount++;
+                updateLabProgress();
+            }
+        }
+
+        function runExperiment2() {
+            document.getElementById('exp2-visual').textContent = "🍂";
+            document.getElementById('exp2-result').textContent = "✅ Olma yuzasi kislorod ta'sirida jigarrang tusga kirdi (Oksidlanish).";
+            if (!completedLabs[2]) {
+                completedLabs[2] = true;
+                labCompletedCount++;
+                updateLabProgress();
+            }
+        }
+
+        function runExperiment3() {
+            document.getElementById('exp3-visual').textContent = "🟠🔩";
+            document.getElementById('exp3-result').textContent = "✅ 7 kundan so'ng temir yuzasida qizg'ish temir oksid (zang) hosil bo'ldi.";
+            if (!completedLabs[3]) {
+                completedLabs[3] = true;
+                labCompletedCount++;
+                updateLabProgress();
+            }
+        }
+
+        function updateLabProgress() {
+            document.getElementById('lab-progress-text').textContent = `Bajarildi: ${labCompletedCount} / 3`;
+            if (labCompletedCount === 3) {
+                addScore(30);
+                addBadge("Kichik kimyogar");
+                showModal("Laboratoriya yakunlandi!", "Siz barcha 3 ta tajribani muvaffaqiyatli bajardingiz! (+30 ball)");
+            }
+        }
+
+        // Microscope Simulation Logic
+        function activateMicroscope(type) {
+            const res = document.getElementById('micro-result-atoms');
+            const title = document.getElementById('micro-title');
+            const desc = document.getElementById('micro-desc');
+
+            if (type === 'reaction1') {
+                res.textContent = "⚡🫧 (CO2 + H2O)";
+                title.textContent = "Soda va Sirka reaksiyasi molekulyar darajada";
+                desc.textContent = "Atomlar qayta guruhlanib, yangi moddalar va gaz molekulalarini hosil qilmoqda.";
+            } else {
+                res.textContent = "🔴🟠 (Fe2O3)";
+                title.textContent = "Temir oksidlanishi (Zang)";
+                desc.textContent = "Temir atomlari havoda uchraydigan kislorod atomlari bilan qattiq birikib, zangni hosil qilmoqda.";
+            }
+        }
+
+        function completeMicroTask() {
+            if (!microDone) {
+                microDone = true;
+                addScore(35);
+                addBadge("Molekulyar kashfiyotchi");
+            }
+            showModal("Tabriklaymiz!", "Siz BSB topshiriqlarini to'liq yakunladingiz va 'Kichik olim' unvoniga ega bo'ldingiz!");
+        }
+
+        // Gamification Helpers
+        function addScore(points) {
+            totalScore += points;
+            document.getElementById('global-score').textContent = totalScore + " ball";
+        }
+
+        function addBadge(name) {
+            badgesCount++;
+            const container = document.getElementById('global-badges');
+            container.innerHTML = `<span class="text-xs bg-emerald-800/80 px-2 py-1 rounded-lg text-emerald-200 border border-emerald-600">
+                <i class="fa-solid fa-award text-amber-400 mr-1"></i> ${badgesCount} nishon
+            </span>`;
+        }
+
+        function showModal(title, text) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-text').textContent = text;
+            document.getElementById('custom-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
